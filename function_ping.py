@@ -14,3 +14,5 @@ def ping(host):
     command = ['ping', param, '1', host]
 
     return subprocess.call(command) == 0
+
+# by https://stackoverflow.com/questions/2953462/pinging-servers-in-python
