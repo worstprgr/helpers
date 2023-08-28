@@ -1,0 +1,25 @@
+server {
+        server_name test.com;
+        return 301 $scheme://test.com$request_uri;
+}
+
+server {
+        server_name www.test.com;
+        return 301 $scheme://www.test.com$request_uri;
+}
+
+server {
+        listen 443 ssl;
+        server_name test.com www.test.com;
+
+        ssl_certificate /<PATH>/certificate.cer;
+        ssl_certificate_key /<PATH>/private.key;
+        ssl_ciphers HIGH:!aNULL:!MD5;
+
+        root /var/www/html;
+        index index.html;
+
+        location / {
+                try_files $uri $uri/ =404;
+        }
+}
